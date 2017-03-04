@@ -7,8 +7,9 @@
     "body-parser": "^1.17.0",
     "cors": "^2.8.1",
     "express": "^4.15.0",
-    "morgan": "^1.8.1",
-    "thinky": "^2.3.8"
+    "mongodb": "^2.2.24",
+    "mongoose": "^4.8.5",
+    "morgan": "^1.8.1"
   },
   "devDependencies": {},
   "scripts": {
@@ -17,5 +18,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }

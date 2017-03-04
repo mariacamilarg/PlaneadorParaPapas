@@ -1,7 +1,5 @@
-var thinky = require('thinky')({
-  host: 'localhost',
-  port: 28015,
-  db: 'clase_web'
-});
+var MongoClient = require('mongodb').MongoClient;
+var mongoose = require('mongoose');
+mongoose.connect('MONGOLAB_URI');
 
-module.exports = thinky;
+module.exports = mongoose;

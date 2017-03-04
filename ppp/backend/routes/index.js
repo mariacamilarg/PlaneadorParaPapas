@@ -1,9 +1,9 @@
-const Estudiante = require('../models/estudiante');
+const User = require('../models/user')
 
 module.exports = function(app) {
   
-  app.get('/estudiantes', Estudiante.list);
-  app.get('/estudiantes/:id', Estudiante.get);
-  app.post('/estudiantes', Estudiante.add);
-  app.delete('/estudiantes/:id', Estudiante.delete);
+  app.get('/users', User.list);
+  app.get('/users/:id', User.get);
+  app.post('/users', User.add);
+  app.delete('/users/:id', User.delete);
 }

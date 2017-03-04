@@ -1,4 +1,4 @@
-const thinky = require('../db');
+const mongoose = require('../db');
 
 const r = thinky.r;
 const type = thinky.type;
