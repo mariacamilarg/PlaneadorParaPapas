@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "git@github.com:mariacamilaremolinagutierrez/PlaneadorParaPapas.git",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --port 8888"
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
   "author": "CAMAyMCRG",
   "license": "MIT",
