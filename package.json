@@ -6,7 +6,8 @@
   "repository": "git@github.com:mariacamilaremolinagutierrez/PlaneadorParaPapas.git",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "build": "webpack --progress -p"
+    "prod": "NODE_ENV=production node server.js",
+    "postinstall": "webpack -p"
   },
   "author": "CAMAyMCRG",
   "license": "MIT",
