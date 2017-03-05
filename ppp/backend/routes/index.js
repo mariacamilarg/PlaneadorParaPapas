@@ -77,7 +77,7 @@ module.exports = function(app) {
       res.json(items);
     });
   });
-  
+
   app.get('/users/:id/items/:id', function(req, res) {
     Item.findById(req.params.id, function(err, item) {
       if (err)
@@ -105,7 +105,7 @@ module.exports = function(app) {
     });
   });
 
-  app.delete('/users/:id/items/:id', unction(req, res) {
+  app.delete('/users/:id/items/:id', function(req, res) {
 
     Item.findByIdAndRemove(req.params.id, function(err) {
       if (err)
