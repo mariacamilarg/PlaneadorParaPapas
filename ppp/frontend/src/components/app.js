@@ -1,69 +1,96 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Estudiante from './estudiante';
+import Item from './item';
 
-const ROOT_URL = "http://157.253.124.182:5030";
+const ROOT_URL = "http://planeadorparapapas.herokuapp.com";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
-      estudiantes: [],
-      nombre: '',
-      codigo: '',
-      nota: ''
+      user: {
+        id:"58bbb661691cc10011d15550"
+      },
+      item: {
+        name: "",
+        dueDate: "",
+        category: "",
+        type: "",
+        reminderDate: "",
+        amount: ""
+      },
+      items: [],
     }
   }
-  
-  agregarEstudiante() {
-    axios.post(ROOT_URL+ "/estudiantes", {
-      nombre: this.state.nombre,
-      codigo: this.state.codigo,
-      nota: this.state.nota
-    })
+
+  addItem() {
+    Item.agregarItem()
     .then(response => {
-      this.obtenerEstudiantes();
+      this.getItems();
     })
   }
-  
-  obtenerEstudiantes() {
-    axios.get(ROOT_URL+ "/estudiantes")
+
+  deleteItem() {
+    Item.deleteItem()
+    .then(response => {
+      this.getItems();
+    })
+  }
+
+  getItems() {
+    Item.getItems()
     .then(response => {
       this.setState({
-        estudiantes: response.data
+        items: response.data
       })
     })
   }
-  
-  
-  
+
+
   render() {
     return(
       <div>
-        <button onClick={this.obtenerEstudiantes.bind(this)}>
-          Obtener estudiantes 
+        <button onClick={this.getItems.bind(this)}>
+          Obtener items
         </button>
-        {this.state.estudiantes.map(estudiante => {
-          return <Estudiante estudiante={estudiante} />
+
+        {this.state.item.map(item => {
+          return <Item item={item} />
         })}
-        
+
         Nombre:
-        <input type="text" value={this.state.nombre} onChange={(event) => {
-          this.setState({nombre: event.target.value})
+        <input type="text" value={this.state.item.name} onChange={(event) => {
+          this.setState({name: event.target.value})
         }} />
-        
-        Codigo:
-        <input type="text" value={this.state.codigo} onChange={(event) => {
-          this.setState({codigo: event.target.value})
+
+        Fecha de Pago:
+        <input type="text" value={this.state.item.dueDate} onChange={(event) => {
+          this.setState({dueDate: event.target.value})
         }} />
-        Nota:
-        <input type="text" value={this.state.nota} onChange={(event) => {
-          this.setState({nota: event.target.value})
+
+        Categoria:
+        <input type="text" value={this.state.item.category} onChange={(event) => {
+          this.setState({category: event.target.value})
         }} />
-        
-        <button onClick={this.agregarEstudiante.bind(this)}>Guardar estudiante</button>
-      </div>
+
+        Tipo:
+        <input type="text" value={this.state.item.type} onChange={(event) => {
+          this.setState({type: event.target.value})
+        }} />
+
+        Recordatorio:
+        <input type="text" value={this.state.item.reminderDate} onChange={(event) => {
+          this.setState({reminderDate: event.target.value})
+        }} />
+
+        Valor:
+        <input type="text" value={this.state.item.amount} onChange={(event) => {
+          this.setState({amount: event.target.value})
+        }} />
+
+        <button onClick={this.addItem.bind(this)}>Agregar item</button>
+      </div>  
     )
   }
 }

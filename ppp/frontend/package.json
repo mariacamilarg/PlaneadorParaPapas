@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Front para planeador para papas",
   "main": "index.js",
+  "repository": "git@github.com:mariacamilaremolinagutierrez/PlaneadorParaPapas.git",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --port 8081",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch"
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
   "author": "CAMAyMCRG",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.2.1",
     "babel-loader": "^6.2.0",
@@ -31,7 +31,6 @@
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",
     "react-router": "^2.0.1",
-    "redux": "^3.0.4",
-    "youtube-api-search": "0.0.5"
+    "redux": "^3.0.4"
   }
 }
