@@ -5,17 +5,135 @@ module.exports = function(app) {
 
   //Users 
 
-  app.get('/users', User.list);
-  app.get('/users/:id', User.get);
-  app.post('/users', User.add);
-  app.delete('/users/:id', User.delete);
-  app.put('/users/:id', User.update);
+  app.get('/users', function(req, res) {
+    User.find(function(err, users) {
+      if (err)
+        res.send(err);
+
+      res.json(users);
+    });
+  });
+
+  app.get('/users/:id', function(req, res) {
+    User.findById(req.params.id, function(err, user) {
+      if (err)
+        res.send(err);
+
+      res.json(user);
+    });
+  });
+
+  app.post('/users', function(req, res) {
+    var user = new User();
+
+    user.name = req.body.name;
+    user.password = req.body.password;
+    user.location = req.location;
+
+    user.save(function(err) {
+      if (err)
+        res.send(err);
+
+      res.json(user);
+    });
+  });
+
+  app.delete('/users/:id', function(req, res) {
+
+    User.findByIdAndRemove(req.params.id, function(err) {
+      if (err)
+        res.send(err);
+
+      res.json({ message: 'User removed successfully!' });
+    });
+  });
+
+  app.put('/users/:id', function(req, res) {
+    User.findById(req.params.id, function(err, user) {
+      if (err)
+        res.send(err);
+
+      user.name = req.body.name || user.name;
+      user.password = req.body.password || user.password;
+      user.location = req.location || user.location;
+      ;
+
+      user.save(function(err) {
+        if (err)
+          res.send(err);
+
+        res.json(user);
+      });
+    });
+  });
 
   //Items
 
-  app.get('/users/:id/items', Item.list);
-  app.get('/users/:id/items/:id', Item.get);
-  app.post('/users/:id/items', Item.add);
-  app.delete('/users/:id/items/:id', Item.delete);
-  app.put('/users/:id/items/:id', Item.update);
+  app.get('/users/:id/items', function(req, res) {
+    Item.find(function(err, items) {
+      if (err)
+        res.send(err);
+
+      res.json(items);
+    });
+  });
+  
+  app.get('/users/:id/items/:id', function(req, res) {
+    Item.findById(req.params.id, function(err, item) {
+      if (err)
+        res.send(err);
+
+      res.json(item);
+    });
+  });
+
+  app.post('/users/:id/items', function(req, res) {
+    var item = new Item();
+
+    item.name = req.body.name;
+    item.dueDay = req.body.dueDay;
+    item.category = req.body.category;
+    item.type = req.body.type;
+    item.reminderDate = req.body.reminderDate;
+    item.amount = req.body.amount;
+
+    item.save(function(err) {
+      if (err)
+        res.send(err);
+
+      res.json(item);
+    });
+  });
+
+  app.delete('/users/:id/items/:id', unction(req, res) {
+
+    Item.findByIdAndRemove(req.params.id, function(err) {
+      if (err)
+        res.send(err);
+
+      res.json({ message: 'Item removed successfully!' });
+    });
+  });
+
+  app.put('/users/:id/items/:id', function(req, res) {
+    Item.findById(req.params.id, function(err, item) {
+      if (err)
+        res.send(err);
+  //Revisar si funciona así
+  item.name = req.body.name || item.name;
+  item.dueDay = req.body.dueDay || item.dueDay;
+  item.category = req.body.category || item.category;
+  item.type = req.body.type || item.type;
+  item.reminderDate = req.body.reminderDate || item.reminderDate;
+  item.amount = req.body.amount || item.amount;
+  ;
+
+  item.save(function(err) {
+    if (err)
+      res.send(err);
+
+    res.json(item);
+  });
+});
+  });
 }
