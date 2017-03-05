@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-const ROOT_URL = "http://planeadorparapapas.herokuapp.com";
+const ROOT_URL = "https://planeadorparapapasbackend.herokuapp.com";
 
 class Item extends Component {
 

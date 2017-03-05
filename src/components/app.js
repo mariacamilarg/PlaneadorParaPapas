@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import update from 'immutability-helper';
+import Item from './item';
 
 const ROOT_URL = "https://planeadorparapapasbackend.herokuapp.com";
 
