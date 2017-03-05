@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import update from 'immutability-helper';
 
-const ROOT_URL = "http://planeadorparapapasbackend.herokuapp.com";
+const ROOT_URL = "https://planeadorparapapasbackend.herokuapp.com";
 
 class App extends Component {
   constructor(props) {
