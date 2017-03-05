@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Item from './item';
+import update from 'immutability-helper';
 
 const ROOT_URL = "http://planeadorparapapas.herokuapp.com";
 
@@ -14,7 +14,7 @@ class App extends Component {
       },
       item: {
         name: "",
-        dueDate: "",
+        dueDay: "",
         category: "",
         type: "",
         reminderDate: "",
@@ -25,21 +25,29 @@ class App extends Component {
   }
 
   addItem() {
-    Item.agregarItem()
+    axios.post(ROOT_URL+"/users/"+this.state.user.id+"/items", this.state.item)
     .then(response => {
       this.getItems();
     })
+    // {
+    //   name: this.state.item.name,
+    //   dueDay: this.state.item.dueDay,
+    //   category: this.state.item.category,
+    //   type: this.state.item.type,
+    //   reminderDate: this.state.item.reminderdate,
+    //   amount: this.state.item.value
+    // })
   }
 
   deleteItem() {
-    Item.deleteItem()
+    return axios.delete(ROOT_URL+"/users/"+this.state.user.id)
     .then(response => {
       this.getItems();
     })
   }
 
   getItems() {
-    Item.getItems()
+    axios.get(ROOT_URL+"/users/"+this.state.user.id+"/items")
     .then(response => {
       this.setState({
         items: response.data
@@ -55,42 +63,44 @@ class App extends Component {
           Obtener items
         </button>
 
-        {this.state.item.map(item => {
+        {this.state.items.map(item => {
           return <Item item={item} />
         })}
 
         Nombre:
         <input type="text" value={this.state.item.name} onChange={(event) => {
-          this.setState({name: event.target.value})
+          this.setState({item: update(this.state.item, {name: {$set: event.target.value}})})
         }} />
 
         Fecha de Pago:
-        <input type="text" value={this.state.item.dueDate} onChange={(event) => {
-          this.setState({dueDate: event.target.value})
+        <input type="date" value={this.state.item.dueDay} onChange={(event) => {
+          this.setState({item: update(this.state.item, {dueDay: {$set: event.target.value}})})
         }} />
 
         Categoria:
         <input type="text" value={this.state.item.category} onChange={(event) => {
-          this.setState({category: event.target.value})
+          this.setState({item: update(this.state.item, {category: {$set: event.target.value}})})
         }} />
 
         Tipo:
         <input type="text" value={this.state.item.type} onChange={(event) => {
-          this.setState({type: event.target.value})
+          this.setState({item: update(this.state.item, {type: {$set: event.target.value}})})
         }} />
 
         Recordatorio:
-        <input type="text" value={this.state.item.reminderDate} onChange={(event) => {
-          this.setState({reminderDate: event.target.value})
+        <input type="date" value={this.state.item.reminderDate} onChange={(event) => {
+          this.setState({item: update(this.state.item, {reminderDate: {$set: event.target.value}})})
         }} />
 
         Valor:
         <input type="text" value={this.state.item.amount} onChange={(event) => {
-          this.setState({amount: event.target.value})
+          this.setState({item: update(this.state.item, {amount: {$set: event.target.value}})})
         }} />
 
-        <button onClick={this.addItem.bind(this)}>Agregar item</button>
-      </div>  
+        <button onClick={this.addItem.bind(this)}>
+          Agregar item
+        </button>
+      </div>
     )
   }
 }
