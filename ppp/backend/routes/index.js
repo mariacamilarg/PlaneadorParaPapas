@@ -26,13 +26,14 @@ module.exports = function(app) {
   app.post('/users', function(req, res) {
     var user = new User();
 
+    user.username = req.body.username;
     user.name = req.body.name;
     user.password = req.body.password;
     user.location = req.location;
 
     user.save(function(err) {
       if (err)
-        res.send(err);
+        return res.send(err);
 
       res.json(user);
     });
@@ -53,6 +54,7 @@ module.exports = function(app) {
       if (err)
         res.send(err);
 
+      user.username = req.body.username || user.username;
       user.name = req.body.name || user.name;
       user.password = req.body.password || user.password;
       user.location = req.location || user.location;
@@ -60,7 +62,7 @@ module.exports = function(app) {
 
       user.save(function(err) {
         if (err)
-          res.send(err);
+          return res.send(err);
 
         res.json(user);
       });
