@@ -17,5 +17,5 @@ module.exports = function(app) {
   app.get('/users/:id/items/:id', Item.get);
   app.post('/users/:id/items', Item.add);
   app.delete('/users/:id/items/:id', Item.delete);
-  app.update('/users/:id/items/:id', Item.update);
+  app.put('/users/:id/items/:id', Item.update);
 }

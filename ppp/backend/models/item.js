@@ -2,8 +2,8 @@ const mongoose = require('../db');
 var Schema = mongoose.Schema;
 
 var itemSchema = new Schema({ //TO_DO field restrictions
-  name: String,
-  dueDay: Date,
+  name: {type: String, required: true},
+  dueDay: {type: Date, required: true},
   category: String,
   type: String,
   reminderDate: Date,
