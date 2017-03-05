@@ -9,11 +9,13 @@ module.exports = function(app) {
   app.get('/users/:id', User.get);
   app.post('/users', User.add);
   app.delete('/users/:id', User.delete);
+  app.put('/users/:id', User.update);
 
   //Items
 
   app.get('/users/:id/items', Item.list);
   app.get('/users/:id/items/:id', Item.get);
   app.post('/users/:id/items', Item.add);
-  app.delete('/users/:id/items/:id', Item.delete)
+  app.delete('/users/:id/items/:id', Item.delete);
+  app.update('/users/:id/items/:id', Item.update);
 }
