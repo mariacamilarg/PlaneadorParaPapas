@@ -1,1 +1,1 @@
-web: ppp/backend/node server.js
+web: node ppp/backend/server.js
