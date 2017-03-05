@@ -1,2 +1,2 @@
-web: cd ppp/front && npm i && npm start
+web: cd ppp/frontend && npm i && npm start
 server: cd ppp/backend && npm i && npm start
