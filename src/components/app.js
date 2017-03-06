@@ -20,7 +20,8 @@ class App extends Component {
         amount: ""
       },
       items: [],
-      displayTableKeys: ['name','type','dueDay','reminderDate','amount']
+      displayTableKeys: ['name','type','dueDay','reminderDate','amount'],
+      displayCategories: []
     }
   }
 
@@ -47,8 +48,28 @@ class App extends Component {
   getItems() {
     axios.get(ROOT_URL+"/users/"+this.state.user.id+"/items")
     .then(response => {
-      this.setState({items: response.data });
+      var newItems = response.data;
+      this.setState({items: newItems });
+      var cats = [];
+      var i, newCat;
+      for (i=0; i<newItems.length; i++){
+        newCat = newItems[i]['category'];
+        if(!this.containsElement(cats, newCat)) {
+            cats.push(newCat);
+        }
+      }
+      this.setState({displayCategories: cats});
     })
+  }
+
+  containsElement(arr, el) {
+    var i;
+    for(i = 0; i < arr.length; i++) {
+        if(arr[i] === el){
+          return true;
+        }
+    }
+    return false;
   }
 
 
@@ -66,54 +87,69 @@ class App extends Component {
 
         <div className="row">
 
-
-
           <div className="col-md-8 col-xs-12">
-            <table className="table table-striped custab">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Tipo</th>
-                  <th>Pagar en</th>
-                  <th>Recordatorio</th>
-                  <th>Valor</th>
-                  <th className="text-center">Accion</th>
-                  {/*
-                    {this.props.titles.map(function(title) {
-                      return <th key={title}>{title}</th>;
-                    })}
-                  */}
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  this.state.items != null &&
-                  this.state.items.map(function(row, i) {
-                    return (
-                      <tr key={i}>
-                        {
-                          this.state.displayTableKeys.map(function(key) {
-                            return (
-                              <td key={key}>{row[key]}</td>
-                            )}, this)
-                        }
-                        <td className="text-center">
-                          {/*
-                          <button className="btn btn-info btn-xs" onClick={this.deleteItem.bind(this, row.id)}><span className="glyphicon glyphicon-edit"></span> Editar </button>
-                          <br />
-                          */}
-                          <button className="btn btn-danger btn-xs" onClick={this.deleteItem.bind(this, row._id)}><span className="glyphicon glyphicon-remove"></span> Eliminar </button>
-                        </td>
-                      </tr>
-                    );
-                  }, this)
-                }
-              </tbody>
-            </table>
+            {
+              this.state.displayCategories != null &&
+              this.state.displayCategories.map(function(cat, i) {
+                return (
+                  <div key={i}>
+                    <div className="row">
+                      <div className="col-md-12 col-xs-12">
+                        <h2>{cat}</h2>
+                        <table className="table table-striped custab">
+                          <thead>
+                            <tr>
+                              <th>Nombre</th>
+                              <th>Tipo</th>
+                              <th>Pagar en</th>
+                              <th>Recordatorio</th>
+                              <th>Valor</th>
+                              <th className="text-center">Accion</th>
+                              {/*
+                                {this.props.titles.map(function(title) {
+                                  return <th key={title}>{title}</th>;
+                                })}
+                              */}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {
+                              this.state.items != null &&
+                              this.state.items.map(function(row, i) {
+                                return (
+                                  <tr key={i}>
+                                    {
+                                      this.state.displayTableKeys.map(function(key) {
+                                        return (
+                                          <td key={key}>{row[key]}</td>
+                                        )}, this)
+                                    }
+                                    <td className="text-center">
+                                      {/*
+                                      <button className="btn btn-info btn-xs" onClick={this.deleteItem.bind(this, row.id)}><span className="glyphicon glyphicon-edit"></span> Editar </button>
+                                      <br />
+                                      */}
+                                      <button className="btn btn-danger btn-xs" onClick={this.deleteItem.bind(this, row._id)}><span className="glyphicon glyphicon-remove"></span> Eliminar </button>
+                                    </td>
+                                  </tr>
+                                );
+                              }, this)
+                            }
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <br />
+                  </div>
+                );
+              }, this)
+            }
+            <br />
             <button className="btn btn-primary btn-xs pull-right" onClick={this.getItems.bind(this)}> Actualizar Items </button>
           </div>
 
           <div className="col-md-4 col-xs-12 custyle">
+            <h2>Agregar Item</h2>
             <table className="table table-striped custab">
               <thead>
                 <tr>
