@@ -1,9 +1,39 @@
+/* Bootsnipps */
+/* Table Filter: http://bootsnipp.com/snippets/featured/easy-table-filter */
+/* Table: http://bootsnipp.com/snippets/featured/striped-table-30 */
 
-.margen {
-  margin-top: 40px;
-  padding-top: 40px;
+
+/*    --------------------------------------------------
+	:: General
+	-------------------------------------------------- */
+body {
+	font-family: 'Open Sans', sans-serif;
+	color: #353535;
+}
+.content h1 {
+	text-align: center;
+}
+.content .content-footer p {
+	color: #6d6d6d;
+    font-size: 12px;
+    text-align: center;
+}
+.content .content-footer p a {
+	color: inherit;
+	font-weight: bold;
 }
 
-.buscador input {
-  min-width: 75%;
-}
+/*	--------------------------------------------------
+	:: Table
+	-------------------------------------------------- */
+  .custab{
+      border: 1px solid #ccc;
+      padding: 5px;
+      margin: 5% 0;
+      box-shadow: 3px 3px 2px #ccc;
+      transition: 0.5s;
+      }
+  .custab:hover{
+      box-shadow: 3px 3px 0px transparent;
+      transition: 0.5s;
+      }
