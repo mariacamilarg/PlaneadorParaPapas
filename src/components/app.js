@@ -21,7 +21,8 @@ class App extends Component {
       },
       items: [],
       displayTableKeys: ['name','type','dueDay','reminderDate','amount'],
-      displayCategories: []
+      displayCategories: [],
+      displayItemsByCategory: []
     }
   }
 
@@ -116,23 +117,26 @@ class App extends Component {
                             {
                               this.state.items != null &&
                               this.state.items.map(function(row, i) {
-                                return (
-                                  <tr key={i}>
-                                    {
-                                      this.state.displayTableKeys.map(function(key) {
-                                        return (
-                                          <td key={key}>{row[key]}</td>
-                                        )}, this)
-                                    }
-                                    <td className="text-center">
-                                      {/*
-                                      <button className="btn btn-info btn-xs" onClick={this.deleteItem.bind(this, row.id)}><span className="glyphicon glyphicon-edit"></span> Editar </button>
-                                      <br />
-                                      */}
-                                      <button className="btn btn-danger btn-xs" onClick={this.deleteItem.bind(this, row._id)}><span className="glyphicon glyphicon-remove"></span> Eliminar </button>
-                                    </td>
-                                  </tr>
-                                );
+                                if (row['category']==cat){
+                                  return(
+                                    <tr key={i}>
+                                      {
+                                        this.state.displayTableKeys.map(function(key) {
+                                          return (
+                                            <td key={key}>{row[key]}</td>
+                                          )
+                                          }, this)
+                                      }
+                                      <td className="text-center">
+                                        {/*
+                                        <button className="btn btn-info btn-xs" onClick={this.deleteItem.bind(this, row.id)}><span className="glyphicon glyphicon-edit"></span> Editar </button>
+                                        <br />
+                                        */}
+                                        <button className="btn btn-danger btn-xs" onClick={this.deleteItem.bind(this, row._id)}><span className="glyphicon glyphicon-remove"></span> Eliminar </button>
+                                      </td>
+                                    </tr>
+                                  );
+                                }
                               }, this)
                             }
                           </tbody>
