@@ -96,9 +96,11 @@ class App extends Component {
                             )}, this)
                         }
                         <td className="text-center">
-                          <button className="btn btn-info btn-xs" onClick={this.deleteItem.bind(this, row.id)}><span class="glyphicon glyphicon-edit"></span> Editar </button>
+                          {/*
+                          <button className="btn btn-info btn-xs" onClick={this.deleteItem.bind(this, row.id)}><span className="glyphicon glyphicon-edit"></span> Editar </button>
                           <br />
-                          <button className="btn btn-danger btn-xs" onClick={this.deleteItem.bind(this, row.id)}><span class="glyphicon glyphicon-remove"></span> Eliminar </button>
+                          */}
+                          <button className="btn btn-danger btn-xs" onClick={this.deleteItem.bind(this, row._id)}><span className="glyphicon glyphicon-remove"></span> Eliminar </button>
                         </td>
                       </tr>
                     );
