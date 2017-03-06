@@ -20,7 +20,7 @@ class App extends Component {
         amount: ""
       },
       items: [],
-      displayTableKeys: ['name','category','type','dueDay','reminderDate','amount']
+      displayTableKeys: ['name','type','dueDay','reminderDate','amount']
     }
   }
 
@@ -66,7 +66,9 @@ class App extends Component {
 
         <div className="row">
 
-          <div className="col-md-8">
+
+
+          <div className="col-md-8 col-xs-12">
             <table className="table table-striped custab">
               <thead>
                 <tr>
@@ -111,7 +113,7 @@ class App extends Component {
             <button className="btn btn-primary btn-xs pull-right" onClick={this.getItems.bind(this)}> Actualizar Items </button>
           </div>
 
-          <div className="col-md-4 custyle">
+          <div className="col-md-4 col-xs-12 custyle">
             <table className="table table-striped custab">
               <thead>
                 <tr>
