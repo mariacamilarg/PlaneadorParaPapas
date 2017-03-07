@@ -182,11 +182,29 @@ class App extends Component {
                 </tr>
                 <tr>
                   <td> Categoria </td>
-                  <td> <input type="text" value={this.state.item.category} onChange={(event) => { this.setState({item: update(this.state.item, {category: {$set: event.target.value}})}) }} /> </td>
+                  <td>
+                    <select onChange={(event) => { this.setState({item: update(this.state.item, {category: {$set: event.target.value}})}) }}>
+                      <option defaultValue="selected" value={this.state.item.category}> </option>
+                      <option value="Casa">Casa</option>
+                      <option value="Carro">Carro</option>
+                      <option value="Finanzas">Finanzas</option>
+                    </select>
+                  </td>
+                  {/*
+                    <td> <input type="text" value={this.state.item.category} onChange={(event) => { this.setState({item: update(this.state.item, {category: {$set: event.target.value}})}) }} /> </td>
+                  */}
                 </tr>
                 <tr>
                   <td> Tipo </td>
-                  <td> <input type="text" value={this.state.item.type} onChange={(event) => { this.setState({item: update(this.state.item, {type: {$set: event.target.value}})}) }} /> </td>
+                  <td>
+                    <select onChange={(event) => { this.setState({item: update(this.state.item, {type: {$set: event.target.value}})}) }}>
+                      <option defaultValue="selected" value={this.state.item.type}> </option>
+                      <option value="Impuesto">Impuesto</option>
+                      <option value="Seguro">Seguro</option>
+                      <option value="Mantenimiento">Mantenimiento</option>
+                      <option value="Pagos">Pagos</option>
+                    </select>
+                  </td>
                 </tr>
                 <tr>
                   <td> Pagar en </td>
