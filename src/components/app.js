@@ -24,6 +24,9 @@ class App extends Component {
       displayCategories: [],
       displayItemsByCategory: []
     }
+
+    {/*Si quieres que los proyectos aparezcan de una sin necesidad del botón de actualizar, puedes llamar a la función getItems
+      en el constructor, y se llamará al iniciar la aplicación*/}
   }
 
   addItem() {
@@ -83,7 +86,8 @@ class App extends Component {
         <div className="row">
           <h1>PLANEADOR PARA PAPAS</h1>
         </div>
-
+        {/*Sería chevere que incluyeran una sección pequeña sobre la aplicación, por ejemplo para que se usa, como se usa
+          y porque es lo máximo del planeta*/}
         <br />
 
         <div className="row">
@@ -97,6 +101,9 @@ class App extends Component {
                     <div className="row">
                       <div className="col-md-12 col-xs-12">
                         <h2>{cat}</h2>
+                        {/*Podrías retornar estas tablas dentro de un componente de categorias, que tuviera un componente de item
+                          (Por lo que veo, no usas tu componente de item) No solo volvería tu aplicación más modular, sino que
+                          te ayudaría a conseguir los 3 modulos que necesitas para la nota (Tienes tiempo hasta el jueves! YOU CAN DO IT)*/}
                         <table className="table table-striped custab">
                           <thead>
                             <tr>
@@ -151,7 +158,7 @@ class App extends Component {
             <br />
             <button className="btn btn-primary btn-xs pull-right" onClick={this.getItems.bind(this)}> Actualizar Items </button>
           </div>
-
+          {/*También podrías pensar en convertir este elemento en un componente aparte, para que tu app sea más modular.*/}
           <div className="col-md-4 col-xs-12 custyle">
             <h2>Agregar Item</h2>
             <table className="table table-striped custab">
@@ -163,10 +170,13 @@ class App extends Component {
               </thead>
               <tbody>
                 <tr>
+                  {/*Sería chevere que explicaran lo que es cada campo, especialmente cosas no tan obvias como el tipo*/}
                   <td> Nombre </td>
                   <td> <input type="text" value={this.state.item.name} onChange={(event) => { this.setState({item: update(this.state.item, {name: {$set: event.target.value}})}) }} /> </td>
                 </tr>
                 <tr>
+                  {/*Para algo un poco más avanzado (depronto futuras iteraciones) sería chevere pensar en que se puedan crear
+                    categorías y se puedan usar más adelante como dropdown */}
                   <td> Categoria </td>
                   <td> <input type="text" value={this.state.item.category} onChange={(event) => { this.setState({item: update(this.state.item, {category: {$set: event.target.value}})}) }} /> </td>
                 </tr>
