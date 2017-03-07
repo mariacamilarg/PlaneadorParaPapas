@@ -4,6 +4,17 @@ import update from 'immutability-helper';
 
 const ROOT_URL = "https://planeadorparapapasbackend.herokuapp.com";
 
+/*
+Buen manejo del state. Pero dos recomendaciones:
+1. Depronto trata de hacerlo mas modular, partiendo este App
+en varios componentes que te faciliten la modificabilidad y
+la lectura del codigo.
+2. Falta agregar un poco mas de estilo, hay toda una implementación
+de bootstrap para react, se llama react-bootstrap. Permite hacer
+Navbars facil, hay buenos ejemplos y creo que hay free templates que
+pueden servir de guia.
+*/
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -224,7 +235,7 @@ class App extends Component {
         </div>
 
       </div>
-    )
+    );
   }
 }
 
