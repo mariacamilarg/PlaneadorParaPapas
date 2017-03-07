@@ -31,8 +31,6 @@ class App extends Component {
     .then(response => {
       this.setState({item: update(this.state.item, {name: {$set: ""}})});
       this.setState({item: update(this.state.item, {dueDay: {$set: ""}})});
-      this.setState({item: update(this.state.item, {category: {$set: ""}})});
-      this.setState({item: update(this.state.item, {type: {$set: ""}})});
       this.setState({item: update(this.state.item, {reminderDate: {$set: ""}})});
       this.setState({item: update(this.state.item, {amount: {$set: ""}})});
       this.getItems();
