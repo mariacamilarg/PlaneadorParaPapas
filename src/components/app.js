@@ -21,8 +21,8 @@ class App extends Component {
       },
       items: [],
       displayTableKeys: ['name','type','dueDay','reminderDate','amount'],
-      displayCategories: [],
-      displayItemsByCategory: []
+      formatsDisplayTableKeys: ['string','string','date','date','money'],
+      displayCategories: []
     }
   }
 
@@ -121,10 +121,24 @@ class App extends Component {
                                   return(
                                     <tr key={i}>
                                       {
-                                        this.state.displayTableKeys.map(function(key) {
-                                          return (
-                                            <td key={key}>{row[key]}</td>
-                                          )
+                                        this.state.displayTableKeys.map(function(key, j) {
+                                          if (this.state.formatsDisplayTableKeys[j] =='date'){
+                                            var date = row[key].split('T')[0].split('-'); //2017-01-12
+                                            return (
+                                              <td key={key}>{date[2]}/{date[1]}/{date[0]}</td>
+                                            );
+                                          }
+                                          else if (this.state.formatsDisplayTableKeys[j] =='money') {
+                                            var money = Number(row[key]).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                                            return (
+                                              <td key={key}>${money}</td>
+                                            );
+                                          }
+                                          else{
+                                            return (
+                                              <td key={key}>{row[key]}</td>
+                                            );
+                                          }
                                           }, this)
                                       }
                                       <td className="text-center">
