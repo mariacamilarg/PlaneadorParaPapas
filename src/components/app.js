@@ -36,6 +36,12 @@ class App extends Component {
 
         <div className="row">
           <h1>PLANEADOR PARA PAPAS</h1>
+          <p>
+            PPP es una aplicación que permite tener el control sobre los pagos
+            periódicos que debe hacer un adulto en Colombia. Por ahora soportamos
+            3 categorías principales referentes a viviendas (casa), vehiculos (carro)
+            y finanzas personales.
+          </p>
         </div>
 
         <br />
@@ -55,7 +61,7 @@ class App extends Component {
         </div>
 
       </div>
-    )
+    );
   }
 }
 
