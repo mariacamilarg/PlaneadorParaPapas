@@ -1,3 +1,5 @@
+// Recuerden el uso de use strict en los archivos de javascript
+
 import React, {Component} from 'react';
 import axios from 'axios';
 import update from 'immutability-helper';
